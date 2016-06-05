@@ -1,0 +1,4 @@
+- Se pueden afinar un poco mas algunas definiciones (ej: decir que algunas clases son uniones disjuntas de sus subclases, o especificar que un cargo que requiere sexo femenino y haber ocupado un puesto, ese puesto debe haber sido tambien de sexo femenino. Un ejemplo de esto es que no tiene sentido que un PosibleDirectorProyectoA haya ocupado un puesto de SubDirectorProyectoB, y viceversa).
+
+- Ver atributos de calidad (Oquare/OOPS)
+- Desarrollar sistema! --> expandir esto

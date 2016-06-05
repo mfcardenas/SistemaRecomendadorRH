@@ -1,0 +1,1277 @@
+@prefix : <http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos> a owl:Ontology .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#asociadoAPuesto
+
+:asociadoAPuesto a owl:AnnotationProperty .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#nombre
+
+:nombre a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#ocupoPuesto
+
+:ocupoPuesto a owl:ObjectProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range :Puesto .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#estaHabilitado
+
+:estaHabilitado a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range xsd:boolean .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#tieneDesempeño
+
+:tieneDesempeño a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range _:genid1 .
+
+_:genid1 a rdfs:Datatype ;
+	owl:oneOf _:genid4 .
+
+_:genid4 a rdf:List ;
+	rdf:first "Bueno" ;
+	rdf:rest _:genid3 .
+
+_:genid3 a rdf:List ;
+	rdf:first "Muy Bueno" ;
+	rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first "Regular" ;
+	rdf:rest rdf:nil .
+
+:tieneDesempeño rdfs:comment "Cualidad acerca de la realización de las funciones propias del puesto" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#tieneEdad
+
+:tieneEdad a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range xsd:int ;
+	rdfs:comment "Edad de una persona expresada en años." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#tieneLiderazgo
+
+:tieneLiderazgo a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range xsd:boolean .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#tieneNombre
+
+:tieneNombre a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range xsd:string .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#tieneSexo
+
+:tieneSexo a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Persona ;
+	rdfs:range _:genid5 .
+
+_:genid5 a rdfs:Datatype ;
+	owl:oneOf _:genid7 .
+
+_:genid7 a rdf:List ;
+	rdf:first "Femenino" ;
+	rdf:rest _:genid6 .
+
+_:genid6 a rdf:List ;
+	rdf:first "Masculino" ;
+	rdf:rest rdf:nil .
+
+:tieneSexo rdfs:comment "Género asociado a una persona, (Masculino o Femenino). Condición que distingue al hombre de la mujer en los seres humanos" .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#Director
+
+:Director a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Director"^^xsd:string ;
+	rdfs:comment "Puesto que coordina Proyectos A o Proyectos B " .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#DirectorProyectoA
+
+:DirectorProyectoA a owl:Class ;
+	rdfs:subClassOf :Director ;
+	:nombre "Director de Proyecto Tipo \"A\""^^xsd:string ;
+	rdfs:comment "Puesto que tiene asociado uno o más Proyectos A, encargado de coordinar sólo proyectos de este tipo" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#DirectorProyectoB
+
+:DirectorProyectoB a owl:Class ;
+	rdfs:subClassOf :Director ;
+	:nombre "Director de Proyecto Tipo \"B\""^^xsd:string ;
+	rdfs:comment "Puesto que tiene asociado uno o más Proyectos B, encargado de coordinar " .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoDesarrollo
+
+:EmpleadoDesarrollo a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Empleado de Desarrollo"^^xsd:string ;
+	rdfs:comment "Puesto encargado de la coordinación de grupos de empleados dentro de la organización y del dictado de cursos de capacitación a los mismos." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoDesarrolloConExp
+
+:EmpleadoDesarrolloConExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoDesarrollo ;
+	:nombre "Empleado de Desarrollo (Con experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Desarrollo que haya tenido experiencia previa en algún Equipo de Desarrollo sin Experiencia al menos una vez." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoDesarrolloSinExp
+
+:EmpleadoDesarrolloSinExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoDesarrollo ;
+	:nombre "Empleado de Desarrollo (Sin experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Desarrollo sin el requisito de experiencia previa en algún Equipo de Desarrollo" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoMantenimiento
+
+:EmpleadoMantenimiento a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Empleado de Mantenimiento"^^xsd:string ;
+	rdfs:comment "Puesto encargado de la conexión de la organización con el exterior, aprovisionamiento de materiales, etc." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoMantenimientoConExp
+
+:EmpleadoMantenimientoConExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoMantenimiento ;
+	:nombre "Empleado de Mantenimiento (Con experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Mantenimiento que haya tenido experiencia previa en algún Equipo de Mantenimiento sin Experiencia al menos una vez." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoMantenimientoSinExp
+
+:EmpleadoMantenimientoSinExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoMantenimiento ;
+	:nombre "Empleado de Mantenimiento (Sin experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Mantenimiento sin el requisito de experiencia previa en algún Equipo de Mantenimiento" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoServicio
+
+:EmpleadoServicio a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Empleado de Servicio"^^xsd:string ;
+	rdfs:comment "Puesto encargado de brindar soporte técnico a la organización" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoServicioConExp
+
+:EmpleadoServicioConExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoServicio ;
+	:nombre "Empleado de Servicio (Con experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Servicio que haya tenido experiencia previa en algún Equipo de Servicio sin Experiencia al menos una vez." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#EmpleadoServicioSinExp
+
+:EmpleadoServicioSinExp a owl:Class ;
+	rdfs:subClassOf :EmpleadoServicio ;
+	:nombre "Empleado de Servicio (Sin experiencia)"^^xsd:string ;
+	rdfs:comment "Puesto Empleado de Servicio sin el requisito de experiencia previa en algún Equipo de Servicio." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#JefaServicio
+
+:JefaServicio a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Jefa de Servicio"^^xsd:string ;
+	rdfs:comment "Puesto que coordina Equipos de Servicio con Experiencia y a Equipos de Servicio sin Experiencia" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#JefeMantenimiento
+
+:JefeMantenimiento a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Jefa de Mantenimiento"^^xsd:string ;
+	rdfs:comment "Puesto que coordina a Equipos de Mantenimiento con Experiencia y a Equipos de Mantenimiento sin Experiencia" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#Persona
+
+:Persona a owl:Class ;
+	owl:equivalentClass _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty :estaHabilitado ;
+	owl:someValuesFrom xsd:boolean .
+
+:Persona owl:equivalentClass _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :tieneEdad ;
+	owl:someValuesFrom xsd:int .
+
+:Persona owl:equivalentClass _:genid10 .
+
+_:genid10 a owl:Restriction ;
+	owl:onProperty :tieneNombre ;
+	owl:someValuesFrom xsd:string .
+
+:Persona owl:equivalentClass _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:someValuesFrom _:genid12 .
+
+_:genid12 a rdfs:Datatype ;
+	owl:oneOf _:genid14 .
+
+_:genid14 a rdf:List ;
+	rdf:first "Femenino" ;
+	rdf:rest _:genid13 .
+
+_:genid13 a rdf:List ;
+	rdf:first "Masculino" ;
+	rdf:rest rdf:nil .
+
+:Persona owl:disjointWith :Puesto ;
+	rdfs:comment "Individuo registrado en el sistema." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PersonaConEdadValida
+
+:PersonaConEdadValida a owl:Class ;
+	rdfs:subClassOf :Persona ;
+	rdfs:comment "Persona cuya edad se encuentra entre 18 y 32 años." , "Se define mediante regla SWRL" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleDirector
+
+:PosibleDirector a owl:Class ;
+	owl:equivalentClass _:genid15 .
+
+_:genid15 owl:intersectionOf _:genid22 .
+
+_:genid22 a rdf:List ;
+	rdf:first :Postulante ;
+	rdf:rest _:genid20 .
+
+_:genid20 a rdf:List ;
+	rdf:first _:genid21 .
+
+_:genid21 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :SubDirector .
+
+_:genid20 rdf:rest _:genid18 .
+
+_:genid18 a rdf:List ;
+	rdf:first _:genid19 .
+
+_:genid19 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:hasValue "Muy Bueno" .
+
+_:genid18 rdf:rest _:genid16 .
+
+_:genid16 a rdf:List ;
+	rdf:first _:genid17 .
+
+_:genid17 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid16 rdf:rest rdf:nil .
+
+_:genid15 a owl:Class .
+
+:PosibleDirector rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :Director ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Director y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleDirectorProyectoA
+
+:PosibleDirectorProyectoA a owl:Class ;
+	owl:equivalentClass _:genid23 .
+
+_:genid23 owl:intersectionOf _:genid26 .
+
+_:genid26 a rdf:List ;
+	rdf:first :PosibleDirector ;
+	rdf:rest _:genid24 .
+
+_:genid24 a rdf:List ;
+	rdf:first _:genid25 .
+
+_:genid25 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Femenino" .
+
+_:genid24 rdf:rest rdf:nil .
+
+_:genid23 a owl:Class .
+
+:PosibleDirectorProyectoA rdfs:subClassOf :PosibleDirector ;
+	owl:disjointWith :PosibleDirectorProyectoB ;
+	:asociadoAPuesto :DirectorProyectoA ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Director y sea calificado para ser un candidato a Director de Proyectos A, cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleDirectorProyectoB
+
+:PosibleDirectorProyectoB a owl:Class ;
+	owl:equivalentClass _:genid27 .
+
+_:genid27 owl:intersectionOf _:genid30 .
+
+_:genid30 a rdf:List ;
+	rdf:first :PosibleDirector ;
+	rdf:rest _:genid28 .
+
+_:genid28 a rdf:List ;
+	rdf:first _:genid29 .
+
+_:genid29 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Masculino" .
+
+_:genid28 rdf:rest rdf:nil .
+
+_:genid27 a owl:Class .
+
+:PosibleDirectorProyectoB rdfs:subClassOf :PosibleDirector ;
+	:asociadoAPuesto :DirectorProyectoB ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Director y sea calificado para ser un candidato a Director de Proyectos B, cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoDesarrollo
+
+:PosibleEmpleadoDesarrollo a owl:Class ;
+	rdfs:subClassOf :Postulante , _:genid31 .
+
+_:genid31 a owl:Class ;
+	owl:unionOf _:genid33 .
+
+_:genid33 a rdf:List ;
+	rdf:first :PosibleEmpleadoDesarrolloConExp ;
+	rdf:rest _:genid32 .
+
+_:genid32 a rdf:List ;
+	rdf:first :PosibleEmpleadoDesarrolloSinExp ;
+	rdf:rest rdf:nil .
+
+:PosibleEmpleadoDesarrollo :asociadoAPuesto :EmpleadoDesarrollo ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Desarrollo y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoDesarrolloConExp
+
+:PosibleEmpleadoDesarrolloConExp a owl:Class ;
+	owl:equivalentClass _:genid34 .
+
+_:genid34 owl:intersectionOf _:genid37 .
+
+_:genid37 a rdf:List ;
+	rdf:first :PosibleEmpleadoDesarrollo ;
+	rdf:rest _:genid35 .
+
+_:genid35 a rdf:List ;
+	rdf:first _:genid36 .
+
+_:genid36 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoDesarrolloSinExp .
+
+_:genid35 rdf:rest rdf:nil .
+
+_:genid34 a owl:Class .
+
+:PosibleEmpleadoDesarrolloConExp rdfs:subClassOf :PosibleEmpleadoDesarrollo ;
+	:asociadoAPuesto :EmpleadoDesarrolloConExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Desarrollo y sea calificado para el mismo cumpliendo todos sus requisitos. Debe haber ocupado el puesto de Empleado de Desarrollo sin Experiencia por lo menos una vez" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoDesarrolloSinExp
+
+:PosibleEmpleadoDesarrolloSinExp a owl:Class ;
+	rdfs:subClassOf :PosibleEmpleadoDesarrollo ;
+	:asociadoAPuesto :EmpleadoDesarrolloSinExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Desarrollo y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoMantenimiento
+
+:PosibleEmpleadoMantenimiento a owl:Class ;
+	owl:equivalentClass _:genid38 .
+
+_:genid38 owl:intersectionOf _:genid41 .
+
+_:genid41 a rdf:List ;
+	rdf:first :Postulante ;
+	rdf:rest _:genid39 .
+
+_:genid39 a rdf:List ;
+	rdf:first _:genid40 .
+
+_:genid40 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Masculino" .
+
+_:genid39 rdf:rest rdf:nil .
+
+_:genid38 a owl:Class .
+
+:PosibleEmpleadoMantenimiento rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :EmpleadoMantenimiento ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Mantenimiento y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoMantenimientoConExp
+
+:PosibleEmpleadoMantenimientoConExp a owl:Class ;
+	owl:equivalentClass _:genid42 .
+
+_:genid42 owl:intersectionOf _:genid45 .
+
+_:genid45 a rdf:List ;
+	rdf:first :PosibleEmpleadoMantenimiento ;
+	rdf:rest _:genid43 .
+
+_:genid43 a rdf:List ;
+	rdf:first _:genid44 .
+
+_:genid44 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoMantenimientoSinExp .
+
+_:genid43 rdf:rest rdf:nil .
+
+_:genid42 a owl:Class .
+
+:PosibleEmpleadoMantenimientoConExp rdfs:subClassOf :PosibleEmpleadoMantenimiento ;
+	:asociadoAPuesto :EmpleadoMantenimientoConExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Mantenimiento y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoMantenimientoSinExp
+
+:PosibleEmpleadoMantenimientoSinExp a owl:Class ;
+	rdfs:subClassOf :PosibleEmpleadoMantenimiento ;
+	:asociadoAPuesto :EmpleadoMantenimientoSinExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Mantenimiento y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoServicio
+
+:PosibleEmpleadoServicio a owl:Class ;
+	rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :EmpleadoServicio ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Servicio y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoServicioConExp
+
+:PosibleEmpleadoServicioConExp a owl:Class ;
+	owl:equivalentClass _:genid46 .
+
+_:genid46 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoServicioSinExp .
+
+:PosibleEmpleadoServicioConExp rdfs:subClassOf :PosibleEmpleadoServicio ;
+	:asociadoAPuesto :EmpleadoServicioConExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Servicio y sea calificado para el mismo cumpliendo todos sus requisitos. Debe haber ocupado el puesto de Empleado de Servicio sin Experiencia por lo menos una vez" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleEmpleadoServicioSinExp
+
+:PosibleEmpleadoServicioSinExp a owl:Class ;
+	rdfs:subClassOf :PosibleEmpleadoServicio ;
+	:asociadoAPuesto :EmpleadoServicioSinExp ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Empleado de Servicio y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleJefaServicio
+
+:PosibleJefaServicio a owl:Class ;
+	owl:equivalentClass _:genid47 .
+
+_:genid47 owl:intersectionOf _:genid54 .
+
+_:genid54 a rdf:List ;
+	rdf:first _:genid55 .
+
+_:genid55 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :SubJefaServicio .
+
+_:genid54 rdf:rest _:genid52 .
+
+_:genid52 a rdf:List ;
+	rdf:first _:genid53 .
+
+_:genid53 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:hasValue "Muy Bueno" .
+
+_:genid52 rdf:rest _:genid50 .
+
+_:genid50 a rdf:List ;
+	rdf:first _:genid51 .
+
+_:genid51 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid50 rdf:rest _:genid48 .
+
+_:genid48 a rdf:List ;
+	rdf:first _:genid49 .
+
+_:genid49 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Femenino" .
+
+_:genid48 rdf:rest rdf:nil .
+
+_:genid47 a owl:Class .
+
+:PosibleJefaServicio rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :JefaServicio ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Jefa de Servicio y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleJefeMantenimiento
+
+:PosibleJefeMantenimiento a owl:Class ;
+	owl:equivalentClass _:genid56 .
+
+_:genid56 owl:intersectionOf _:genid65 .
+
+_:genid65 a rdf:List ;
+	rdf:first :Postulante ;
+	rdf:rest _:genid63 .
+
+_:genid63 a rdf:List ;
+	rdf:first _:genid64 .
+
+_:genid64 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoMantenimiento .
+
+_:genid63 rdf:rest _:genid61 .
+
+_:genid61 a rdf:List ;
+	rdf:first _:genid62 .
+
+_:genid62 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:hasValue "Muy Bueno" .
+
+_:genid61 rdf:rest _:genid59 .
+
+_:genid59 a rdf:List ;
+	rdf:first _:genid60 .
+
+_:genid60 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid59 rdf:rest _:genid57 .
+
+_:genid57 a rdf:List ;
+	rdf:first _:genid58 .
+
+_:genid58 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Masculino" .
+
+_:genid57 rdf:rest rdf:nil .
+
+_:genid56 a owl:Class .
+
+:PosibleJefeMantenimiento rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :JefeMantenimiento ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Jefe de Mantenimiento y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleJefeMantenimientoPrioridadAlta
+
+:PosibleJefeMantenimientoPrioridadAlta a owl:Class ;
+	owl:equivalentClass _:genid66 .
+
+_:genid66 owl:intersectionOf _:genid69 .
+
+_:genid69 a rdf:List ;
+	rdf:first :PosibleJefeMantenimiento ;
+	rdf:rest _:genid67 .
+
+_:genid67 a rdf:List ;
+	rdf:first _:genid68 .
+
+_:genid68 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoMantenimientoConExp .
+
+_:genid67 rdf:rest rdf:nil .
+
+_:genid66 a owl:Class .
+
+:PosibleJefeMantenimientoPrioridadAlta rdfs:subClassOf :PosibleJefeMantenimiento ;
+	:asociadoAPuesto :JefeMantenimiento ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Jefe de Mantenimiento y tenga los requisitos de prioridad en este Puesto (haber ocupado el puesto de Empleado de Mantenimiento con Experiencia)" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleJefeMantenimientoPrioridadBaja
+
+:PosibleJefeMantenimientoPrioridadBaja a owl:Class ;
+	owl:equivalentClass _:genid70 .
+
+_:genid70 owl:intersectionOf _:genid73 .
+
+_:genid73 a rdf:List ;
+	rdf:first :PosibleJefeMantenimiento ;
+	rdf:rest _:genid71 .
+
+_:genid71 a rdf:List ;
+	rdf:first _:genid72 .
+
+_:genid72 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoMantenimientoSinExp .
+
+_:genid71 rdf:rest rdf:nil .
+
+_:genid70 a owl:Class .
+
+:PosibleJefeMantenimientoPrioridadBaja rdfs:subClassOf :PosibleJefeMantenimiento ;
+	:asociadoAPuesto :JefeMantenimiento ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Jefe de Mantenimiento y sea calificado para el mismo cumpliendo sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubDirector
+
+:PosibleSubDirector a owl:Class ;
+	owl:equivalentClass _:genid74 .
+
+_:genid74 owl:intersectionOf _:genid81 .
+
+_:genid81 a rdf:List ;
+	rdf:first :Postulante ;
+	rdf:rest _:genid79 .
+
+_:genid79 a rdf:List ;
+	rdf:first _:genid80 .
+
+_:genid80 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoDesarrolloConExp .
+
+_:genid79 rdf:rest _:genid77 .
+
+_:genid77 a rdf:List ;
+	rdf:first _:genid78 .
+
+_:genid78 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:hasValue "Muy Bueno" .
+
+_:genid77 rdf:rest _:genid75 .
+
+_:genid75 a rdf:List ;
+	rdf:first _:genid76 .
+
+_:genid76 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid75 rdf:rest rdf:nil .
+
+_:genid74 a owl:Class .
+
+:PosibleSubDirector rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :SubDirector ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subdirector y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubDirectorProyectoA
+
+:PosibleSubDirectorProyectoA a owl:Class ;
+	owl:equivalentClass _:genid82 .
+
+_:genid82 owl:intersectionOf _:genid85 .
+
+_:genid85 a rdf:List ;
+	rdf:first :PosibleSubDirector ;
+	rdf:rest _:genid83 .
+
+_:genid83 a rdf:List ;
+	rdf:first _:genid84 .
+
+_:genid84 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Femenino" .
+
+_:genid83 rdf:rest rdf:nil .
+
+_:genid82 a owl:Class .
+
+:PosibleSubDirectorProyectoA rdfs:subClassOf :PosibleSubDirector ;
+	owl:disjointWith :PosibleSubDirectorProyectoB ;
+	:asociadoAPuesto :SubDirectorProyectoA ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subdirector y sea calificado para ser un candidato a Director de Proyectos A, cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubDirectorProyectoB
+
+:PosibleSubDirectorProyectoB a owl:Class ;
+	owl:equivalentClass _:genid86 .
+
+_:genid86 owl:intersectionOf _:genid89 .
+
+_:genid89 a rdf:List ;
+	rdf:first :PosibleSubDirector ;
+	rdf:rest _:genid87 .
+
+_:genid87 a rdf:List ;
+	rdf:first _:genid88 .
+
+_:genid88 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Masculino" .
+
+_:genid87 rdf:rest rdf:nil .
+
+_:genid86 a owl:Class .
+
+:PosibleSubDirectorProyectoB rdfs:subClassOf :PosibleSubDirector ;
+	:asociadoAPuesto :SubDirectorProyectoB ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subdirector y sea calificado para ser un candidato a Director de Proyectos B, cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubJefaServicio
+
+:PosibleSubJefaServicio a owl:Class ;
+	owl:equivalentClass _:genid90 .
+
+_:genid90 owl:intersectionOf _:genid99 .
+
+_:genid99 a rdf:List ;
+	rdf:first :Postulante ;
+	rdf:rest _:genid97 .
+
+_:genid97 a rdf:List ;
+	rdf:first _:genid98 .
+
+_:genid98 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoServicio .
+
+_:genid97 rdf:rest _:genid95 .
+
+_:genid95 a rdf:List ;
+	rdf:first _:genid96 .
+
+_:genid96 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:hasValue "Muy Bueno" .
+
+_:genid95 rdf:rest _:genid93 .
+
+_:genid93 a rdf:List ;
+	rdf:first _:genid94 .
+
+_:genid94 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid93 rdf:rest _:genid91 .
+
+_:genid91 a rdf:List ;
+	rdf:first _:genid92 .
+
+_:genid92 a owl:Restriction ;
+	owl:onProperty :tieneSexo ;
+	owl:hasValue "Femenino" .
+
+_:genid91 rdf:rest rdf:nil .
+
+_:genid90 a owl:Class .
+
+:PosibleSubJefaServicio rdfs:subClassOf :Postulante ;
+	:asociadoAPuesto :SubJefaServicio ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subjefa de Servicio y sea calificado para el mismo cumpliendo todos sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubJefaServicioPrioridadAlta
+
+:PosibleSubJefaServicioPrioridadAlta a owl:Class ;
+	owl:equivalentClass _:genid100 .
+
+_:genid100 owl:intersectionOf _:genid103 .
+
+_:genid103 a rdf:List ;
+	rdf:first :PosibleSubJefaServicio ;
+	rdf:rest _:genid101 .
+
+_:genid101 a rdf:List ;
+	rdf:first _:genid102 .
+
+_:genid102 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoServicioConExp .
+
+_:genid101 rdf:rest rdf:nil .
+
+_:genid100 a owl:Class .
+
+:PosibleSubJefaServicioPrioridadAlta rdfs:subClassOf :PosibleSubJefaServicio ;
+	:asociadoAPuesto :SubJefaServicio ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subjefa de Servicio y tenga los requisitos de prioridad en este Puesto (haber ocupado el puesto de Empleada de Servicio con Experiencia)" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#PosibleSubJefaServicioPrioridadBaja
+
+:PosibleSubJefaServicioPrioridadBaja a owl:Class ;
+	owl:equivalentClass _:genid104 .
+
+_:genid104 owl:intersectionOf _:genid107 .
+
+_:genid107 a rdf:List ;
+	rdf:first :PosibleSubJefaServicio ;
+	rdf:rest _:genid105 .
+
+_:genid105 a rdf:List ;
+	rdf:first _:genid106 .
+
+_:genid106 a owl:Restriction ;
+	owl:onProperty :ocupoPuesto ;
+	owl:someValuesFrom :EmpleadoServicioSinExp .
+
+_:genid105 rdf:rest rdf:nil .
+
+_:genid104 a owl:Class .
+
+:PosibleSubJefaServicioPrioridadBaja rdfs:subClassOf :PosibleSubJefaServicio ;
+	:asociadoAPuesto :SubJefaServicio ;
+	rdfs:comment "Condición que se le otorga al Postulante inmediatamente después de que se presente como candidato al Puesto Subjefa de Servicio y sea calificado para el mismo cumpliendo sus requisitos" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#Postulante
+
+:Postulante a owl:Class ;
+	owl:equivalentClass _:genid108 .
+
+_:genid108 owl:intersectionOf _:genid119 .
+
+_:genid119 a rdf:List ;
+	rdf:first :PersonaConEdadValida ;
+	rdf:rest _:genid113 .
+
+_:genid113 a rdf:List ;
+	rdf:first _:genid114 .
+
+_:genid114 a owl:Restriction ;
+	owl:onProperty :tieneDesempeño ;
+	owl:someValuesFrom _:genid115 .
+
+_:genid115 a rdfs:Datatype ;
+	owl:oneOf _:genid118 .
+
+_:genid118 a rdf:List ;
+	rdf:first "Bueno" ;
+	rdf:rest _:genid117 .
+
+_:genid117 a rdf:List ;
+	rdf:first "Muy Bueno" ;
+	rdf:rest _:genid116 .
+
+_:genid116 a rdf:List ;
+	rdf:first "Regular" ;
+	rdf:rest rdf:nil .
+
+_:genid113 rdf:rest _:genid111 .
+
+_:genid111 a rdf:List ;
+	rdf:first _:genid112 .
+
+_:genid112 a owl:Restriction ;
+	owl:onProperty :tieneLiderazgo ;
+	owl:someValuesFrom xsd:boolean .
+
+_:genid111 rdf:rest _:genid109 .
+
+_:genid109 a rdf:List ;
+	rdf:first _:genid110 .
+
+_:genid110 a owl:Restriction ;
+	owl:onProperty :estaHabilitado ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid109 rdf:rest rdf:nil .
+
+_:genid108 a owl:Class .
+
+:Postulante rdfs:subClassOf :PersonaConEdadValida ;
+	:asociadoAPuesto :Puesto ;
+	rdfs:comment "Persona interesada en postularse a algún o algunos Puestos específicos de la organización. Está habilitado para postularse (no se encuentra en licencia, no rechazó la oferta, etc)." .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#Puesto
+
+:Puesto a owl:Class ;
+	rdfs:comment "Ocupación dentro de la organización, para el cual los postulantes se presentarán. " .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#SubDirector
+
+:SubDirector a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Subdirector"^^xsd:string ;
+	rdfs:comment "Puesto que coordina al Equipo de Desarrollo" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#SubDirectorProyectoA
+
+:SubDirectorProyectoA a owl:Class ;
+	rdfs:subClassOf :SubDirector ;
+	:nombre "Subdirector de Proyecto Tipo \"A\""^^xsd:string ;
+	rdfs:comment "Puesto que coordina al Equipo de Desarrollo, y sólo para Proyectos de tipo A" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#SubDirectorProyectoB
+
+:SubDirectorProyectoB a owl:Class ;
+	rdfs:subClassOf :SubDirector ;
+	:nombre "Subdirector de Proyecto Tipo \"B\""^^xsd:string ;
+	rdfs:comment "Puesto que coordina al Equipo de Desarrollo, y sólo para Proyectos de tipo B" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#SubJefaServicio
+
+:SubJefaServicio a owl:Class ;
+	rdfs:subClassOf :Puesto ;
+	:nombre "Subjefa de Servicio"^^xsd:string ;
+	rdfs:comment "Puesto que coordina un Equipo de Servicio sin Experiencia" .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#director
+
+:director a owl:NamedIndividual , :Director .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#director_A
+
+:director_A a owl:NamedIndividual , :DirectorProyectoA .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#director_B
+
+:director_B a owl:NamedIndividual , :DirectorProyectoB .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_desarrollo_conExp
+
+:emp_desarrollo_conExp a owl:NamedIndividual , :EmpleadoDesarrolloConExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_desarrollo_sinExp
+
+:emp_desarrollo_sinExp a owl:NamedIndividual , :EmpleadoDesarrolloSinExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_mantenimiento_conExp
+
+:emp_mantenimiento_conExp a owl:NamedIndividual , :EmpleadoMantenimientoConExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_mantenimiento_sinExp
+
+:emp_mantenimiento_sinExp a owl:NamedIndividual , :EmpleadoMantenimientoSinExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_servicio_conExp
+
+:emp_servicio_conExp a owl:NamedIndividual , :EmpleadoServicioConExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#emp_servicio_sinExp
+
+:emp_servicio_sinExp a owl:NamedIndividual , :EmpleadoServicioSinExp .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#empleado_desarrollo
+
+:empleado_desarrollo a owl:NamedIndividual , :EmpleadoDesarrollo .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#empleado_mantenimiento
+
+:empleado_mantenimiento a owl:NamedIndividual , :EmpleadoMantenimiento .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#empleado_servicio
+
+:empleado_servicio a owl:NamedIndividual , :EmpleadoServicio .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#jefa_servicio
+
+:jefa_servicio a owl:NamedIndividual , :JefaServicio .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#jefe_mantenimiento
+
+:jefe_mantenimiento a owl:NamedIndividual , :JefeMantenimiento .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_1
+
+:persona_1 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :subdirector_A ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno" ;
+	:tieneEdad "31"^^xsd:int ;
+	:tieneLiderazgo "true"^^xsd:boolean ;
+	:tieneNombre "Juan Perez"^^xsd:string ;
+	:tieneSexo "Masculino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_2
+
+:persona_2 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :emp_desarrollo_conExp ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno" ;
+	:tieneEdad "25"^^xsd:int ;
+	:tieneLiderazgo "true"^^xsd:boolean ;
+	:tieneNombre "Ken Beck"^^xsd:string ;
+	:tieneSexo "Femenino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_3
+
+:persona_3 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :empleado_servicio , :subjefa_servicio ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno" ;
+	:tieneEdad "28"^^xsd:int ;
+	:tieneLiderazgo "true"^^xsd:boolean ;
+	:tieneNombre "Andrew Tanenbaum"^^xsd:string ;
+	:tieneSexo "Femenino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_4
+
+:persona_4 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :emp_servicio_conExp ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno" ;
+	:tieneEdad "24"^^xsd:int ;
+	:tieneLiderazgo "true"^^xsd:boolean ;
+	:tieneNombre "Ada Lovelace"^^xsd:string ;
+	:tieneSexo "Femenino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_5
+
+:persona_5 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :empleado_mantenimiento ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno" ;
+	:tieneEdad "20"^^xsd:int ;
+	:tieneLiderazgo "true"^^xsd:boolean ;
+	:tieneNombre "John McCarthy"^^xsd:string ;
+	:tieneSexo "Masculino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_6
+
+:persona_6 a owl:NamedIndividual , :Persona ;
+	:ocupoPuesto :emp_mantenimiento_sinExp ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneEdad "31"^^xsd:int ;
+	:tieneNombre "Alan Kay"^^xsd:string ;
+	:tieneSexo "Masculino" .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_7
+
+:persona_7 a owl:NamedIndividual , :Persona ;
+	:estaHabilitado "true"^^xsd:boolean ;
+	:tieneDesempeño "Muy Bueno"^^xsd:string ;
+	:tieneEdad "22"^^xsd:int ;
+	:tieneNombre "Dennis Ritchie"^^xsd:string ;
+	:tieneSexo "Masculino"^^xsd:string .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#persona_8
+
+:persona_8 a owl:NamedIndividual , :Persona .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#subdirector
+
+:subdirector a owl:NamedIndividual , :SubDirector .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#subdirector_A
+
+:subdirector_A a owl:NamedIndividual , :SubDirectorProyectoA .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#subdirector_B
+
+:subdirector_B a owl:NamedIndividual , :SubDirectorProyectoB .
+# 
+# http://www.frsf.utn.edu.ar/DSIBO-2015/Sistema-Recomendador-Recursos-Humanos#subjefa_servicio
+
+:subjefa_servicio a owl:NamedIndividual , :SubJefaServicio .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Rules
+# #
+# #################################################################
+# 
+# 
+
+<urn:swrl#P> a <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#E> a <http://www.w3.org/2003/11/swrl#Variable> .
+
+_:genid120 a <http://www.w3.org/2003/11/swrl#Imp> ;
+	<http://www.w3.org/2003/11/swrl#body> _:genid131 .
+
+_:genid131 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid132 .
+
+_:genid132 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :Persona ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid131 rdf:rest _:genid129 .
+
+_:genid129 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid130 .
+
+_:genid130 a <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+	<http://www.w3.org/2003/11/swrl#propertyPredicate> :tieneEdad ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> ;
+	<http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#E> .
+
+_:genid129 rdf:rest _:genid125 .
+
+_:genid125 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid126 .
+
+_:genid126 a <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+	<http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThanOrEqual> .
+
+<http://www.w3.org/2003/11/swrlb#greaterThanOrEqual> a <http://www.w3.org/2003/11/swrl#Builtin> .
+
+_:genid126 <http://www.w3.org/2003/11/swrl#arguments> _:genid128 .
+
+_:genid128 a rdf:List ;
+	rdf:first <urn:swrl#E> ;
+	rdf:rest _:genid127 .
+
+_:genid127 a rdf:List ;
+	rdf:first "18"^^xsd:integer ;
+	rdf:rest rdf:nil .
+
+_:genid125 rdf:rest _:genid121 .
+
+_:genid121 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid122 .
+
+_:genid122 a <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+	<http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> .
+
+<http://www.w3.org/2003/11/swrlb#lessThanOrEqual> a <http://www.w3.org/2003/11/swrl#Builtin> .
+
+_:genid122 <http://www.w3.org/2003/11/swrl#arguments> _:genid124 .
+
+_:genid124 a rdf:List ;
+	rdf:first <urn:swrl#E> ;
+	rdf:rest _:genid123 .
+
+_:genid123 a rdf:List ;
+	rdf:first "32"^^xsd:integer ;
+	rdf:rest rdf:nil .
+
+_:genid121 rdf:rest rdf:nil .
+
+_:genid120 <http://www.w3.org/2003/11/swrl#head> _:genid133 .
+
+_:genid133 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid134 .
+
+_:genid134 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :PersonaConEdadValida ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid133 rdf:rest rdf:nil .
+
+_:genid135 a <http://www.w3.org/2003/11/swrl#Imp> ;
+	<http://www.w3.org/2003/11/swrl#body> _:genid136 .
+
+_:genid136 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid3 .
+
+_:genid3 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :Postulante ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid136 rdf:rest rdf:nil .
+
+_:genid135 <http://www.w3.org/2003/11/swrl#head> _:genid138 .
+
+_:genid138 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid139 .
+
+_:genid139 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :PosibleEmpleadoDesarrolloSinExp ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid138 rdf:rest rdf:nil .
+
+_:genid140 a <http://www.w3.org/2003/11/swrl#Imp> ;
+	<http://www.w3.org/2003/11/swrl#body> _:genid141 .
+
+_:genid141 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid2 .
+
+_:genid2 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :Postulante ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid141 rdf:rest rdf:nil .
+
+_:genid140 <http://www.w3.org/2003/11/swrl#head> _:genid142 .
+
+_:genid142 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid143 .
+
+_:genid143 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :PosibleEmpleadoServicioSinExp ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid142 rdf:rest rdf:nil .
+
+_:genid144 a <http://www.w3.org/2003/11/swrl#Imp> ;
+	<http://www.w3.org/2003/11/swrl#body> _:genid147 .
+
+_:genid147 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid1 .
+
+_:genid1 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :Postulante ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid147 rdf:rest _:genid145 .
+
+_:genid145 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid146 .
+
+_:genid146 a <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+	<http://www.w3.org/2003/11/swrl#propertyPredicate> :tieneSexo ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> ;
+	<http://www.w3.org/2003/11/swrl#argument2> "Masculino" .
+
+_:genid145 rdf:rest rdf:nil .
+
+_:genid144 <http://www.w3.org/2003/11/swrl#head> _:genid148 .
+
+_:genid148 a <http://www.w3.org/2003/11/swrl#AtomList> ;
+	rdf:first _:genid149 .
+
+_:genid149 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+	<http://www.w3.org/2003/11/swrl#classPredicate> :PosibleEmpleadoMantenimientoSinExp ;
+	<http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#P> .
+
+_:genid148 rdf:rest rdf:nil .
+# Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi
